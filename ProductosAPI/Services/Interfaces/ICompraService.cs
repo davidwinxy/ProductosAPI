@@ -6,8 +6,9 @@ namespace ProductosAPI.Services.Interfaces
     {
         Task<IEnumerable<Compra>> GetCompras();
         Task<Compra> GetCompraById(int id);
-        Task<Compra> CreateCompra(Compra compra, int idProveedor);
+        Task<Compra> CreateCompra(Compra compra);
         Task UpdateCompra(Compra compra, int id);
         Task DeleteCompra(int id);
+        Task<bool> ExisteProveedor(int idProveedor);
     }
 }
