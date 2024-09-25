@@ -16,14 +16,19 @@ namespace ProductosAPI.Services.Implementaciones
 
         public async Task<Compra> CreateCompra(Compra compra, int idProveedor)
         {
-            
+            var proveedorExistente = await _context.Proveedors.AnyAsync(p => p.Id == idProveedor);
+
+            if (!proveedorExistente)
+            {
+                throw new KeyNotFoundException("Proveedor no encontrado");
+            }
 
             await _context.compras.AddAsync(compra);
-
             await _context.SaveChangesAsync();
 
             return compra;
         }
+
 
 
         public async Task DeleteCompra(int id)
