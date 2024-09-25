@@ -15,8 +15,8 @@ namespace ProductosAPI.Context
 
         public DbSet<Proveedor> Proveedors { get; set; }
         public DbSet<Compra> compras { get; set; }
-        public DbSet<Rol> rols { get; set; }
-        public DbSet<UsuarioRol> usuarios { get; set; }
+        public DbSet<Rol> rol { get; set; }
+        public DbSet<UsuarioRol> usuario { get; set; }
 
     }
 }
