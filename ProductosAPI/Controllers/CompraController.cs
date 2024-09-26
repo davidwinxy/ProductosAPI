@@ -9,7 +9,7 @@ namespace ProductosAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // Protege todos los métodos de este controlador
+    [Authorize] 
     public class CompraController : ControllerBase
     {
         private readonly ICompraService _compraService;

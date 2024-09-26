@@ -6,9 +6,9 @@ using ProductosAPI.Models;
 
 namespace ProductosAPI.Context
 {
-    public class ProductosContext : DbContext
+    public class RolContext : DbContext
     {
-        public ProductosContext(DbContextOptions<ProductosContext> options) : base(options) 
+        public RolContext(DbContextOptions<RolContext> options) : base(options) 
         {
                     
         }

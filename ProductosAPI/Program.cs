@@ -13,12 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var conString = builder.Configuration.GetConnectionString("Conn");
-builder.Services.AddDbContext<ProductosContext>(
+builder.Services.AddDbContext<RolContext>(
     options => options.UseMySql(conString, ServerVersion.AutoDetect(conString))
 );
 
 builder.Services.AddScoped<IProveedorService, ProveedorService>();
 builder.Services.AddScoped<ICompraService, CompraService>();
+builder.Services.AddScoped<IRolService, RolService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(b => {
