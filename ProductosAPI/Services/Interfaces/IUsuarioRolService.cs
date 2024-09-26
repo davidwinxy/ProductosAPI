@@ -9,5 +9,6 @@ namespace ProductosAPI.Services.Interfaces
         Task<UsuarioRol> CreateUsuarioRol(UsuarioRol usuariorol);
         Task UpdateUsuarioRol(UsuarioRol usuariorol, int id);
         Task UsuarioRol(int id);
+        Task DeleteUsuarioRol(int id);
     }
 }

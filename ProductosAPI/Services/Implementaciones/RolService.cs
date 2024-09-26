@@ -9,8 +9,8 @@ namespace ProductosAPI.Services.Implementaciones
     public class RolService : IRolService
     {
 
-        private readonly RolContext _context;
-        public RolService(RolContext context)
+        private readonly ProductosContext _context;
+        public RolService(ProductosContext context)
         {
             _context = context;
         }

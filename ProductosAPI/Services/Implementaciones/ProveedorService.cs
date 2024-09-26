@@ -7,8 +7,8 @@ namespace ProductosAPI.Services.Implementaciones
 {
     public class ProveedorService : IProveedorService
     {
-        private readonly RolContext _context;
-        public ProveedorService(RolContext context)
+        private readonly ProductosContext _context;
+        public ProveedorService(ProductosContext context)
         {
             _context = context;
         }

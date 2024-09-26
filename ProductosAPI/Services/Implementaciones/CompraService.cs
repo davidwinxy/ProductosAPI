@@ -7,9 +7,9 @@ namespace ProductosAPI.Services.Implementaciones
 {
     public class CompraService : ICompraService
     {
-        private readonly RolContext _context;
+        private readonly ProductosContext _context;
 
-        public CompraService(RolContext context)
+        public CompraService(ProductosContext context)
         {
             _context = context;
         }
