@@ -16,6 +16,7 @@ namespace ProductosAPI.Context
         public DbSet<Login> Login { get; set; }
         public DbSet<Articulo> articulo { get; set; }
         public DbSet<Prestamo> Prestamos { get; set; }
+        public DbSet<usuario> usuario { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuraciones adicionales pueden ir aquí

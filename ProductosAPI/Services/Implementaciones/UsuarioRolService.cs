@@ -17,7 +17,7 @@ namespace ProductosAPI.Services.Implementaciones
         public async Task<UsuarioRol> CreateUsuarioRol(UsuarioRol usuariorol)
         {
             // Validar que el usuario existe
-            var usuarioExistente = await _context.UsuarioRoles.AnyAsync(u => u.Id == usuariorol.IdUsuario);
+            var usuarioExistente = await _context.usuario.AnyAsync(u => u.Id == usuariorol.IdUsuario);
             if (!usuarioExistente)
             {
                 throw new KeyNotFoundException("Usuario no encontrado");
