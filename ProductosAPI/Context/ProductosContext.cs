@@ -13,7 +13,7 @@ namespace ProductosAPI.Context
         public DbSet<Compra> compras { get; set; } // Cambiado a plural
         public DbSet<Rol> rol { get; set; } // Cambiado a plural
         public DbSet<UsuarioRol> UsuarioRoles { get; set; } // Cambiado a plural
-
+        public DbSet<Login> Login { get; set; }
         // Si necesitas configuraciones adicionales, puedes sobrescribir OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

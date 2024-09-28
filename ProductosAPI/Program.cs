@@ -21,6 +21,7 @@ builder.Services.AddScoped<IProveedorService, ProveedorService>();
 builder.Services.AddScoped<ICompraService, CompraService>();
 builder.Services.AddScoped<IRolService, RolService>();
 builder.Services.AddScoped<IUsuarioRolService, UsuarioRolService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(b => {
