@@ -23,6 +23,11 @@ builder.Services.AddScoped<IRolService, RolService>();
 builder.Services.AddScoped<IUsuarioRolService, UsuarioRolService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IPrestamoService, PrestamoService>();
+builder.Services.AddScoped<IArticuloInterface, ArticuloService>();
+builder.Services.AddScoped<IImagenArticuloInterface, ImagenArticuloInterface>();
+builder.Services.AddScoped<IusuarioService, UsuarioService>();
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(b => {
