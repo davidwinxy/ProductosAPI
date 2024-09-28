@@ -14,7 +14,8 @@ namespace ProductosAPI.Context
         public DbSet<Rol> rol { get; set; } // Cambiado a plural
         public DbSet<UsuarioRol> UsuarioRoles { get; set; } // Cambiado a plural
         public DbSet<Login> Login { get; set; }
-        // Si necesitas configuraciones adicionales, puedes sobrescribir OnModelCreating
+        public DbSet<Articulo> articulo { get; set; }
+        public DbSet<Prestamo> Prestamos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuraciones adicionales pueden ir aquí
