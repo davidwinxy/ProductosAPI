@@ -21,7 +21,10 @@ namespace ProductosAPI.Services.Implementaciones
 
         public async Task<Articulo> GetByIdAsync(int id)
         {
-            return await _context.articulo.FirstOrDefaultAsync(a => a.Id == id);
+            // Suponiendo que estás usando Entity Framework Core
+            return await _context.articulo
+                                 .Include(a => a.Imagenes) // Incluir las imágenes asociadas
+                                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
 
@@ -47,6 +50,13 @@ namespace ProductosAPI.Services.Implementaciones
             await _context.SaveChangesAsync();
             return articulo;
 
+        }
+
+        public async Task<IEnumerable<ImagenArticulo>> GetByArticuloIdAsync(int articuloId)
+        {
+            return await _context.imagenArticulo
+                                 .Where(img => img.ArticuloId == articuloId)
+                                 .ToListAsync();
         }
     }
 }

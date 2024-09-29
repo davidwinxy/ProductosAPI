@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ProductosAPI.DTO;
 using ProductosAPI.Models;
 using ProductosAPI.Services.Interfaces;
@@ -21,6 +22,8 @@ namespace ProductosAPI.Controllers
             _imagenArticuloService = imagenArticuloService;
         }
 
+
+    
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Articulo>>> GetArticulos()
         {
@@ -28,25 +31,25 @@ namespace ProductosAPI.Controllers
 
             foreach (var articulo in articulos)
             {
-                // Para cada artículo, obtener sus imágenes
+                // Obtener las imágenes para cada artículo
                 articulo.Imagenes = (ICollection<ImagenArticulo>)await _imagenArticuloService.GetByArticuloIdAsync(articulo.Id);
             }
 
             return Ok(articulos);
         }
 
-
-        // Obtener un artículo por ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Articulo>> GetArticulo(int id)
         {
+            // Obtén el artículo incluyendo las imágenes
             var articulo = await _articuloService.GetByIdAsync(id);
+
             if (articulo == null)
             {
                 return NotFound();
             }
 
-            // Obtener las imágenes relacionadas con el artículo
+            // Si estás utilizando un servicio que ya obtiene las imágenes, esto no es necesario
             articulo.Imagenes = (ICollection<ImagenArticulo>)await _imagenArticuloService.GetByArticuloIdAsync(id);
 
             return Ok(articulo);

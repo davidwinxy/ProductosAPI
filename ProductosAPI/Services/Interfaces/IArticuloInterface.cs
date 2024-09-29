@@ -4,6 +4,7 @@ namespace ProductosAPI.Services.Interfaces
 {
     public interface IArticuloInterface
     {
+        Task<IEnumerable<ImagenArticulo>> GetByArticuloIdAsync(int articuloId);
         Task<IEnumerable<Articulo>> GetAllAsync();
         Task<Articulo> GetByIdAsync(int id);
         Task <Articulo> CreateArticulo(Articulo articulo);

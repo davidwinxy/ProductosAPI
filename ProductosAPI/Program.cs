@@ -13,10 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var conString = builder.Configuration.GetConnectionString("Conn");
-builder.Services.AddDbContext<ProductosContext>(
-    options => options.UseMySql(conString, ServerVersion.AutoDetect(conString))
-);
+builder.Services.AddDbContext<ProductosContext>(options => options.UseMySql(conString, ServerVersion.AutoDetect(conString)));
 
+// Registra servicios
 builder.Services.AddScoped<IProveedorService, ProveedorService>();
 builder.Services.AddScoped<ICompraService, CompraService>();
 builder.Services.AddScoped<IRolService, RolService>();
@@ -27,21 +26,22 @@ builder.Services.AddScoped<IArticuloInterface, ArticuloService>();
 builder.Services.AddScoped<IImagenArticuloInterface, ImagenArticuloInterface>();
 builder.Services.AddScoped<IusuarioService, UsuarioService>();
 
-
-
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(b => {
+builder.Services.AddSwaggerGen(b =>
+{
     b.SwaggerDoc("v1", new OpenApiInfo { Title = "Productos API", Version = "V1" });
 
-    var jwtSecurityScheme = new OpenApiSecurityScheme {
+    var jwtSecurityScheme = new OpenApiSecurityScheme
+    {
         Scheme = "bearer",
         BearerFormat = "JWT",
         Name = "JWT Authentication",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,
         Description = "Ingresar tu token de JWT Authentication",
-        
-        Reference = new OpenApiReference {
+
+        Reference = new OpenApiReference
+        {
             Id = JwtBearerDefaults.AuthenticationScheme,
             Type = ReferenceType.SecurityScheme
         }
@@ -51,8 +51,10 @@ builder.Services.AddSwaggerGen(b => {
     b.AddSecurityRequirement(new OpenApiSecurityRequirement { { jwtSecurityScheme, Array.Empty<string>() } });
 });
 
-builder.Services.AddAuthorization(options => {
-    options.AddPolicy("LoggedInPolicy", policy => {
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("LoggedInPolicy", policy =>
+    {
         policy.RequireAuthenticatedUser();
     });
 });
@@ -60,15 +62,18 @@ builder.Services.AddAuthorization(options => {
 // Clave JWT segura y de longitud adecuada
 var key = "UnaClaveSeguraYComplejaDeAlMenos32Caracteres!2024"; // Asegúrate de que esta clave tenga al menos 32 caracteres
 
-builder.Services.AddAuthentication(options => {
+builder.Services.AddAuthentication(options =>
+{
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddJwtBearer(options => {
+.AddJwtBearer(options =>
+{
     options.RequireHttpsMetadata = false; // Cambia a true en producción
     options.SaveToken = true;
 
-    options.TokenValidationParameters = new TokenValidationParameters {
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
         ValidateAudience = false,
