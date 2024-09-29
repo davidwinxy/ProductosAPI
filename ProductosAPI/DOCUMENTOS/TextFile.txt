@@ -1,0 +1,8 @@
+﻿CREATE TABLE imagenarticulo (
+    Id INT PRIMARY KEY AUTO_INCREMENT,  -- Cambié IDENTITY por AUTO_INCREMENT
+    ArticuloId INT,
+    FileName NVARCHAR(255),
+    ImageData LONGBLOB,  -- VARBINARY(MAX) 
+    ContentType NVARCHAR(100),
+    FOREIGN KEY (ArticuloId) REFERENCES articulo(Id) ON DELETE CASCADE
+);

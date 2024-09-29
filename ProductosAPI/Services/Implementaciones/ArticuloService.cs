@@ -21,10 +21,10 @@ namespace ProductosAPI.Services.Implementaciones
 
         public async Task<Articulo> GetByIdAsync(int id)
         {
-            return await _context.articulo.FindAsync(id);
+            return await _context.articulo.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-      
+
         public async Task UpdateAsync(Articulo articulo, int id)
         {
             _context.articulo.Update(articulo);
