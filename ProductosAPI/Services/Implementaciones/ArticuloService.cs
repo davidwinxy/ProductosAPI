@@ -21,17 +21,24 @@ namespace ProductosAPI.Services.Implementaciones
 
         public async Task<Articulo> GetByIdAsync(int id)
         {
-            // Suponiendo que estás usando Entity Framework Core
             return await _context.articulo
                                  .Include(a => a.Imagenes) // Incluir las imágenes asociadas
-                                 .FirstOrDefaultAsync(a => a.Id == id);
+                                .FirstOrDefaultAsync(a => a.Id == id);
         }
-
 
         public async Task UpdateAsync(Articulo articulo, int id)
         {
-            _context.articulo.Update(articulo);
-            await _context.SaveChangesAsync();
+            var existingArticulo = await _context.articulo.FindAsync(id);
+            if (existingArticulo != null)
+            {
+                // Actualiza las propiedades del artículo existente
+                existingArticulo.Nombre = articulo.Nombre;
+                existingArticulo.Descripcion = articulo.Descripcion;
+                existingArticulo.Categoria = articulo.Categoria;
+                existingArticulo.Disponibilidad = articulo.Disponibilidad;
+
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteAsync(int id)
@@ -49,14 +56,13 @@ namespace ProductosAPI.Services.Implementaciones
             await _context.articulo.AddAsync(articulo);
             await _context.SaveChangesAsync();
             return articulo;
-
         }
 
         public async Task<IEnumerable<ImagenArticulo>> GetByArticuloIdAsync(int articuloId)
         {
             return await _context.imagenArticulo
-                                 .Where(img => img.ArticuloId == articuloId)
-                                 .ToListAsync();
+                                .Where(img => img.ArticuloId == articuloId)
+                                .ToListAsync();
         }
     }
 }
